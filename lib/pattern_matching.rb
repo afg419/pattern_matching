@@ -1,12 +1,6 @@
 require 'pry'
 
 module PatternMatching
-  class NoPossibleMatchError < StandardError
-  end
-
-  class IllegalMatcherError < StandardError
-  end
-
   def pattern_match(matcher, expression)
     @var_names = []
     pm(matcher, expression)
@@ -37,7 +31,6 @@ module PatternMatching
       return true unless matcher.class == expression.class
       return true unless matcher.count == expression.count
     end
-    false
   end
 
   def match_arrays(matcher, expression)
@@ -70,5 +63,11 @@ module PatternMatching
 
   def pad_symbol(expression)
     ":" + expression.to_s
+  end
+
+  class NoPossibleMatchError < StandardError
+  end
+
+  class IllegalMatcherError < StandardError
   end
 end
